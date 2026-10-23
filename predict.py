@@ -4,6 +4,8 @@ import sys
 import numpy as np
 import pandas as pd
 
+from train import recent_mean_consumption
+
 N_SAMPLES = 100
 
 
@@ -11,9 +13,8 @@ def predict(model_filename: str, historic_data_filename: str, future_data_filena
     with open(model_filename) as f:
         model = json.load(f)
 
-    historic_df = pd.read_csv(historic_data_filename).dropna(subset=["consumption"])
     # Recompute the recent mean from historic data so each forecast uses the latest observations
-    recent_mean = historic_df.groupby("location")["consumption"].agg(lambda s: s.tail(model["window"]).mean())
+    recent_mean = recent_mean_consumption(pd.read_csv(historic_data_filename), model["window"])
     future_df = pd.read_csv(future_data_filename)
 
     rows = []

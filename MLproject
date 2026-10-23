@@ -4,8 +4,18 @@ uv_env: pyproject.toml
 
 target: consumption
 domain: health_supply
-required_covariates: []
+required_covariates:
+  - stock_on_hand
 supported_period_type: month
+
+meta_data:
+  display_name: Naive consumption (PoC)
+  description: >
+    Forecasts monthly product consumption as Poisson samples around the mean of the last 6
+    recorded months. Months that ended with zero stock on hand are excluded, because consumption
+    in a stock-out month understates demand.
+  author: CHAP health_supply PoC
+  author_assessed_status: red
 
 entry_points:
   train:
