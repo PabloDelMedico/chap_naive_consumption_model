@@ -9,11 +9,13 @@ required_covariates:
 supported_period_type: month
 
 meta_data:
-  display_name: Naive consumption (PoC)
+  display_name: AMC baseline (naive consumption)
   description: >
-    Forecasts monthly product consumption as Poisson samples around the mean of the last 6
-    recorded months. Months that ended with zero stock on hand are excluded, because consumption
-    in a stock-out month understates demand.
+    Average Monthly Consumption (AMC) baseline, the method many logistics management systems use
+    for ordering: Poisson samples around the mean of the last 6 recorded months. Months that ended
+    with zero stock on hand are excluded, because consumption in a stock-out month understates
+    demand. Intended as the reference other consumption models should beat; its intervals are too
+    narrow for inventory decisions.
   author: CHAP health_supply PoC
   author_assessed_status: red
 
